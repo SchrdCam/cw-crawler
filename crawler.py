@@ -1,4 +1,5 @@
 import tweepy
+import time
 
 api_key = "Xdaq3HoXaxqBG8ZW3HejFAUGw"
 api_secret = "xvAzePVTv6QHMI9G9H1fvIDIkLRc658gJlueF1lHehhlhmTKzN"
@@ -16,10 +17,15 @@ class MyStreamListener(tweepy.StreamListener):              #Initialise an overr
     
     def on_status(self, status):                            # If a status is detected that meets parameters,
         tweets.append(status)                               # append it to the list of tweets we are collecting
+        print("got a tweet!")
 
 myStreamListener = MyStreamListener()
 tweetStream = tweepy.Stream(auth = api.auth, listener = myStreamListener)  #create the stream using our API + class
 
-tweetStream.filter(track=["glasgow","Glasgow"]) #set up the stream to watch for "glasgow" 
-print("done")
+x=True
+
+while x:
+    tweetStream.filter(track=["twitter"])                   #set up the stream to watch for "glasgow" 
+    print("tweets: ")
+    time.sleep(10)
 
